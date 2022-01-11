@@ -31,6 +31,7 @@ export default function HeaderBar() {
               <th>ID</th>
               <th>Name</th>
               <th>Address</th>
+              <th>Options</th>
             </tr>
         {students.map((student) => (
             <tr>
