@@ -17,7 +17,7 @@ import com.mitchell.studentsystem.model.Student;
 import com.mitchell.studentsystem.service.StudentService;
 
 @RestController
-@RequestMapping
+@RequestMapping("/student")
 @CrossOrigin
 public class StudentController {
 	@Autowired
