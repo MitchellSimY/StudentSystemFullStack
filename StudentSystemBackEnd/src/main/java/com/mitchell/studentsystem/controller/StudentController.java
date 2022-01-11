@@ -25,7 +25,7 @@ public class StudentController {
 	
 	@PostMapping("/add")
 	public String add(@RequestBody Student student) {
-		System.out.println(student);
+		System.out.println(student.getFirstName());
 		studentService.saveStudent(student);
 		return "New student has been added";
 	}
@@ -35,8 +35,4 @@ public class StudentController {
 		return studentService.getAllStudents();
 	}
 	
-	@RequestMapping(value = "/addStudentPage", method = RequestMethod.GET)
-	public String handleGet(HttpServletResponse response) {
-		return "/Pages/AddStudent.js";
-	}
 }

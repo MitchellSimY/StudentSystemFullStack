@@ -26,7 +26,7 @@ export default function HeaderBar() {
   return (
     <div>
       <Paper elevation={3} style={paperStyles}>
-      <table style={{padding: "15px"}}>
+      <table style={{padding: "15px", }}>
             <tr>
               <th>ID</th>
               <th>Name</th>

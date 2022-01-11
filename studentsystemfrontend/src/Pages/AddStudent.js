@@ -21,38 +21,14 @@ export default function Student() {
     e.preventDefault();
     const student = { firstName, address };
 
-    // if (!notValidEntry(student)) {
-      fetch("http://localhost:8080/student/add", {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify(student),
-      }).then(() => {
-        console.log("New student added!");
-        
-      });
-      // successfullyAdded();
-    // } else {
-      // setErrorHandle(true);
-    // }
-  }
-
-  // function notValidEntry(student) {
-  //   const name = student.firstName;
-  //   const location = student.address;
-  //   if ( name === "" || name === " ") {
-  //     return false;
-  //   } else if (location === "" || location === " ") {
-  //     return false;
-  //   }
-  //   console.log(student);
-  // }
-
-  function successfullyAdded() {
-    setSuccessfullyAddedUserCheck(true);
-    if (errorHandle) {
-      setErrorHandle(false);
-    }
-
+    fetch("http://localhost:8080/student/add", {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(student),
+    }).then(() => {
+      console.log("New student added!");
+      setSuccessfullyAddedUserCheck(true);
+    });
   }
 
   return (
