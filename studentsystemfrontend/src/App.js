@@ -4,6 +4,7 @@ import AddStudent from "./Pages/AddStudent";
 import DisplayStudents from "./components/DisplayStudents";
 import Home from "./Pages/Home";
 import {Routes, Route} from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 

@@ -1,6 +1,8 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { Paper } from "@material-ui/core";
+import Button from 'react-bootstrap/Button';
+
 
 export default function HeaderBar() {
   // states
@@ -10,7 +12,7 @@ export default function HeaderBar() {
   const paperStyles = {
     overflowY: "scroll",
     padding: "50px 20px",
-    width: 600,
+    width: 725,
     margin: "20px auto",
     overflow: "visible",
   };
@@ -23,25 +25,42 @@ export default function HeaderBar() {
       });
   });
 
+  // Functions
+  function handleDelete(e) {
+    e.preventDefault();
+    console.log(e.target.getAttribute("keyid"));
+
+    var targetId = e.target.getAttribute("keyid");
+
+    fetch(`http://localhost:8080/student/deleteStudent/${targetId}`, {
+      method: "DELETE",
+    }).then(() => {
+      console.log("Student deleted!");
+    });
+  }
+
   return (
     <div>
       <Paper elevation={3} style={paperStyles}>
-      <table style={{padding: "15px", }}>
+        <table style={{ padding: "15px", overflow: "visible" }}>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Options</th>
+          </tr>
+          {students.map((student) => (
             <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Address</th>
-              <th>Options</th>
+              <td style={{ padding: "50px" }}>{student.id}</td>
+              <td style={{ padding: "50px" }}>{student.firstName}</td>
+              <td style={{ padding: "50px" }}>{student.address}</td>
+              <td style={{ padding: "50px" }}>
+              <button type="button" class="btn btn-danger" onClick={handleDelete} keyid={student.id}>Delete</button>
+              <button type="button" class="btn btn-primary">Update</button>
+              </td>
             </tr>
-        {students.map((student) => (
-            <tr>
-                <td style={{padding: "50px"}}>{student.id}</td>
-                <td style={{padding: "50px"}}>{student.firstName}</td>
-                <td style={{padding: "50px"}}>{student.address}</td>
-                <td style={{padding: "50px"}}> Delete? </td>
-            </tr>
-          
-        ))}
+
+          ))}
         </table>
       </Paper>
     </div>
