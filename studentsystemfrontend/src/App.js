@@ -1,5 +1,5 @@
 import "./App.css";
-import HeaderBar from "./components/HeaderBar.js";
+import HeaderBar from "./components/HeaderBar.jsx";
 import AddStudent from "./Pages/AddStudent";
 import DisplayStudents from "./components/DisplayStudents";
 import Home from "./Pages/Home";
