@@ -11,12 +11,15 @@ export default function DeleteStudentPopup({ targetId, setDeletePopup }) {
 
   const innerDiv = {
     position: "absolute",
-    height: "fit-content",
-    width: "fit-content",
+    height: "30vh",
     top: "25%",
     left: "25%",
     backgroundColor: "white",
     padding: "20px",
+
+    display: 'flex',  
+    justifyContent:'center', 
+    alignItems:'center'
   };
 
   // Function
