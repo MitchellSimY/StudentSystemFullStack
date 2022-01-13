@@ -7,6 +7,8 @@ import DeleteStudentPopup from "../components/DeleteStudentPopup.jsx";
 export default function HeaderBar() {
   // states
   const [students, setStudents] = useState([]);
+  const [deletePopup, setDeletePopup] = useState(false);
+  const [targetId, setTargetId] = useState("");
 
   // Constants
   const paperStyles = {
@@ -28,20 +30,17 @@ export default function HeaderBar() {
   // Functions
   function handleDelete(e) {
     e.preventDefault();
-    console.log(e.target.getAttribute("keyid"));
+    var key = e.target.getAttribute("keyid");
+    if (!deletePopup) {
+      setDeletePopup(true);
+      setTargetId(key)
+    } 
 
-    var targetId = e.target.getAttribute("keyid");
-
-    fetch(`http://localhost:8080/student/deleteStudent/${targetId}`, {
-      method: "DELETE",
-    }).then(() => {
-      console.log("Student deleted!");
-    });
   }
 
   return (
     <div>
-      {/* <DeleteStudentPopup /> */}
+      {deletePopup ? <DeleteStudentPopup targetId={targetId} setDeletePopup={setDeletePopup}/> : null}
       <Paper elevation={10} style={paperStyles}>
         
         <table style={{ padding: "50px", overflow: "visible" }}>
@@ -54,7 +53,7 @@ export default function HeaderBar() {
           {students.map((student) => (
             <tr>
               <td style={{ padding: "50px" }}>{student.id}</td>
-              <td style={{ padding: "50px" }}>{student.firstName} {student.lastName}</td>
+              <td style={{ padding: "25px" }}>{student.firstName} {student.lastName}</td>
               <td style={{ padding: "50px" }}>{student.address}</td>
               <td style={{ padding: "50px" }}>
               <button type="button" class="btn btn-danger" onClick={handleDelete} keyid={student.id}>Delete</button> {" "}

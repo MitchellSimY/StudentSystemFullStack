@@ -1,4 +1,4 @@
-export default function DeleteStudentPopup() {
+export default function DeleteStudentPopup({ targetId, setDeletePopup }) {
   // Styling
   const outerDiv = {
     position: "fixed",
@@ -22,10 +22,18 @@ export default function DeleteStudentPopup() {
   // Function
   function handleConfirm(e) {
     e.preventDefault();
+    
+    console.log(targetId);
+    fetch(`http://localhost:8080/student/deleteStudent/${targetId}`, {
+      method: "DELETE",
+    }).then(() => {
+      console.log("Student deleted!");
+    });
+    setDeletePopup(false);
   }
 
   function handleCancel(e) {
-      e.preventDefault();
+    setDeletePopup(false);
   }
 
   return (
