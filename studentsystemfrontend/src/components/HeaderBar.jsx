@@ -6,10 +6,14 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import AddStudentPage from "../Pages/AddStudent";
+import SideBar from "./SideBar";
+import { useState } from "react";
 
 
 export default function HeaderBar() {
+
+  const [showSideBar, setShowSideBar] = useState(false);
+
   function viewAddStudents(e) {
     e.preventDefault();
     window.location = "../addStudent"
@@ -26,8 +30,17 @@ export default function HeaderBar() {
     window.location = "../";
   }
 
+  function menuOnClick() {
+    if (showSideBar) {
+      setShowSideBar(false);
+    } else {
+      setShowSideBar(true);
+    }
+  }
+
   return (
     <div>
+      {showSideBar ? <SideBar showSideBar={showSideBar} setShowSideBar={setShowSideBar}/> : "" }
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
@@ -37,6 +50,7 @@ export default function HeaderBar() {
               color="inherit"
               aria-label="menu"
               sx={{ mr: 2 }}
+              onClick={menuOnClick}
             >
               <MenuIcon />
             </IconButton>
